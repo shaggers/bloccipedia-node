@@ -2,10 +2,14 @@
   "name": "blocipedia-node",
   "version": "1.0.0",
   "description": "Wikipedia imitation where users can collaborate their research",
-  "main": "index.js",
+  "main": "src/server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shaggers/bloccipedia-node.git"
+  },
   "scripts": {
     "test": "export NODE_ENV=test && jasmine"
   },
-  "author": "",
+  "author": "Cameron Lenartowich",
   "license": "ISC"
 }
