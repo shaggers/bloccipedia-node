@@ -1,0 +1,11 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "Wikipedia imitation where users can collaborate their research",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jasmine"
+  },
+  "author": "",
+  "license": "ISC"
+}
