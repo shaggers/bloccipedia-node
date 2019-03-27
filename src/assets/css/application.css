@@ -1,0 +1,37 @@
+body {
+    padding-top: 120px;
+    background: url(../newsPaperBackground.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#mainTitle {
+    text-align: center;
+    margin: auto;
+    width: 750px;
+    font-family: 'Germania One', cursive;
+    background-color: #808080;
+}
+
+#firstHr{
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+#secondHr{
+    overflow: visible; /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+#mainParagraph{
+    font-size: 1.8em;
+}
