@@ -1,4 +1,2 @@
 /node_modules
 .env
-/src/db/migrations/notAFile.txt
-/src/db/seeds/notAFile.txt
