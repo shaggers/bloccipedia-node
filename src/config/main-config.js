@@ -19,10 +19,11 @@ module.exports = {
             secret: process.env.cookieSecret,
             resave: false,
             saveUninitialized: false,
-            cookie: { maxAge: 1.21e+9 } //set cookie to expire in 14 days
+            cookie: { maxAge: 60000 } 
           }));
         app.use(flash());
-        //passportConfig.init(app);
+        /*
+        passportConfig.init(app);
         app.use((req,res,next) => {
             res.locals.currentUser = req.user;
             if(res.locals.currentUser != undefined){
@@ -30,6 +31,7 @@ module.exports = {
             }
             next();
         });
+        */
         app.use(logger('dev'));
     }
 };
