@@ -15,10 +15,14 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false
     }
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+
   };
   return User;
 };

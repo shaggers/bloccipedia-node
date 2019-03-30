@@ -22,12 +22,14 @@ describe("User", () => {
       User.create({
         name: "John Smith",
         email: "user@example.com",
-        password: "1234567890"
+        password: "1234567890",
+        isVerified: false
       })
       .then((user) => {
         expect(user.name).toBe("John Smith");
         expect(user.email).toBe("user@example.com");
         expect(user.id).toBe(1);
+        expect(user.isVerified).toBe(false);
         done();
       })
       .catch((err) => {
@@ -40,7 +42,8 @@ describe("User", () => {
       User.create({
         name: "John Smith",
         email: "It's-a me, Mario!",
-        password: "1234567890"
+        password: "1234567890",
+        isVerified: false
       })
       .then((user) => {
 
@@ -61,14 +64,16 @@ describe("User", () => {
       User.create({
         name: "John Smith",
         email: "user@example.com",
-        password: "1234567890"
+        password: "1234567890",
+        isVerified: false
       })
       .then((user) => {
 
         User.create({
           name: "Copy Cat",
           email: "user@example.com",
-          password: "nananananananananananananananana BATMAN!"
+          password: "nananananananananananananananana BATMAN!",
+          isVerified: false
         })
         .then((user) => {
 

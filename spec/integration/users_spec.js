@@ -40,7 +40,8 @@ describe("routes : users", () => {
             form: {
                 name: "John Smith",
                 email: "user@example.com",
-                password: "123456789"
+                password: "123456789",
+                isVerified: false
             }
           }
     
@@ -53,6 +54,7 @@ describe("routes : users", () => {
                 expect(user.name).toBe("John Smith");
                 expect(user.email).toBe("user@example.com");
                 expect(user.id).toBe(1);
+                expect(user.isVerified).toBe(false);
                 done();
               })
               .catch((err) => {
@@ -70,7 +72,8 @@ describe("routes : users", () => {
               form: {
                 name: "John Smith",
                 email: "no",
-                password: "123456789"
+                password: "123456789",
+                isVerified: false
               }
             },
             (err, res, body) => {
