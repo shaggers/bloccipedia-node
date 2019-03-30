@@ -1,6 +1,7 @@
 const userQueries = require("../db/queries.users.js");
 const sgMail = require('@sendgrid/mail');
 const crypto = require('crypto-random-string');
+const cryptoCode = crypto(6);
 
 module.exports = {
 
@@ -23,16 +24,16 @@ module.exports = {
                 res.redirect("/users/sign_up");
             } else {
 
-                const cryptoCode = crypto(6);
+                console.log(cryptoCode);
                 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                 const msg = {
                 //to: newUser.email,
                 to: "camtl66@gmail.com",
                 from: "camtl66@gmail.com",
                 subject: 'Bloccipedia account verification',
-                text: 'confirmation code: ' + cryptoCode,
-                html: '<strong>Thank you for signing up with bloccipedia.</strong>'
+                text: 'Your verification code is: ' + cryptoCode
                 };
+                console.log(msg);
                 sgMail.send(msg);
 
                 req.flash("notice", "Please verify your account");
