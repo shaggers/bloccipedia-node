@@ -1,5 +1,8 @@
 body {
-    padding-top: 120px;
+    padding-top: 58px;
+}
+
+#indexBody {
     background: url(../newsPaperBackground.jpg) no-repeat center center fixed;
     background-size: cover;
 }
@@ -10,6 +13,7 @@ body {
     width: 750px;
     font-family: 'Germania One', cursive;
     background-color: #808080;
+    margin-top: 60px;
 }
 
 #firstHr{
@@ -34,4 +38,22 @@ body {
 
 #mainParagraph{
     font-size: 1.8em;
+}
+
+#signUpBody{
+    margin-top: 60px;
+    margin-left: 14%;
+}
+
+#navRightItems a {
+    margin: 10px;
+}
+
+nav {
+    background-color: #7b8d7b;
+}
+
+#navTitle {
+    font-family: 'Germania One', cursive;
+    font-size: 1.4em;
 }

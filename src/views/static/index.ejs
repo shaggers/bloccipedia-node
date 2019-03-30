@@ -3,11 +3,13 @@
     <head>
         <% include ./partials/head.ejs %>
     </head>
-    <body>
+    <body id="indexBody">
 
         <% include ./partials/navbar.ejs %>
 
-        <main id="indexBody">
+        <main>
+
+            <% include ../static/partials/messages.ejs %>
 
             <div id="mainTitle" class="jumbotron rounded-circle col-8 border border-dark">
                 <h1 class="display-2">Bloccipedia</h1>
