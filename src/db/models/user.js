@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     isVerified: {
       type: DataTypes.BOOLEAN,
       allowNull: false
+    },
+    verificationCode: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {});
   User.associate = function(models) {

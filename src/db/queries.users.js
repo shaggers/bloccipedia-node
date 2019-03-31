@@ -1,5 +1,6 @@
 const User = require("./models").Users;
 const bcrypt = require("bcrypt");
+const crypto = require('crypto-random-string');
 
 module.exports = {
 
@@ -12,13 +13,23 @@ module.exports = {
         name: newUser.name,
         email: newUser.email,
         password: hashedPassword,
-        isVerified: false
+        isVerified: false,
+        verificationCode: crypto(6)
         })
         .then((user) => {
         callback(null, user);
         })
         .catch((err) => {
         callback(err);
+        })
+    },
+    verifyAccount(id){
+        
+        User.findByPk(id)
+        .then((user) => {
+            user.update({
+                isVerified: true
+            })
         })
     }
 

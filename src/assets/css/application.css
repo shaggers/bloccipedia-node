@@ -57,3 +57,12 @@ nav {
     font-family: 'Germania One', cursive;
     font-size: 1.4em;
 }
+
+#verificationBody {
+    margin-top: 60px;
+    margin-left: 14%;
+}
+
+#signInBody {
+    margin-top: 60px;
+}

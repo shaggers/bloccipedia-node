@@ -1,7 +1,6 @@
 const userQueries = require("../db/queries.users.js");
 const sgMail = require('@sendgrid/mail');
-const crypto = require('crypto-random-string');
-const cryptoCode = crypto(6);
+const passport = require("passport");
 
 module.exports = {
 
@@ -14,8 +13,7 @@ module.exports = {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        passwordConfirmation: req.body.passwordConfirmation,
-        isVerified : false
+        passwordConfirmation: req.body.passwordConfirmation
         };
 
         userQueries.createUser(newUser, (err, user) => {
@@ -23,22 +21,61 @@ module.exports = {
                 req.flash("error", err);
                 res.redirect("/users/sign_up");
             } else {
-
-                console.log(cryptoCode);
+                console.log("above passport function");
+                passport.authenticate("local")(req, res, () => {
+                console.log("inside passport function");
                 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                 const msg = {
                 //to: newUser.email,
                 to: "camtl66@gmail.com",
                 from: "camtl66@gmail.com",
                 subject: 'Bloccipedia account verification',
-                text: 'Your verification code is: ' + cryptoCode
+                text: 'Your verification code is: ' + user.verificationCode
                 };
                 console.log(msg);
                 sgMail.send(msg);
 
                 req.flash("notice", "Please verify your account");
                 res.redirect("/users/verification");
+                })
             }
         });
+    },
+    signInForm(req, res, next){
+        res.render("users/sign_in");
+    },
+    signIn(req, res, next){
+        passport.authenticate("local")(req, res, function () {
+            if(!req.user){
+                req.flash("notice", "Sign in failed. Please try again.")
+                res.redirect("/users/sign_in");
+            } else {
+                req.flash("notice", "You've successfully signed in!");
+                res.redirect("/");
+            }
+        })
+    },
+    signOut(req, res, next){
+        req.logout();
+        req.flash("notice", "You've successfully signed out!");
+        res.redirect("/");
+    },
+    verifyForm(req, res, next){
+        if(req.user){
+            res.render("users/verification");
+        } else {
+            res.redirect("/")
+        }
+    },
+    verify(req, res, next){
+
+        if(req.body.verificationCode === req.user.verificationCode){
+            userQueries.verifyAccount(req.user.id);
+                req.flash("notice", "Your account verification was successful");
+                res.redirect("/");
+        } else {
+            req.flash("notice", "The code you've entered is incorrect. Please try again.");
+            res.redirect("/users/verification");
+        }
     }
 }

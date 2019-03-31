@@ -1,6 +1,6 @@
 module.exports = {
     
-    validateUsers(req, res, next) {
+    validateUsersSignUp(req, res, next) {
         if(req.method === "POST") {
    
           req.checkBody("name", "must be at least 4 characters in length").isLength({min: 4});
@@ -17,6 +17,22 @@ module.exports = {
         } else {
           return next();
         }
+    },
+    validateUsersSignIn(req, res, next) {
+      if(req.method === "POST") {
+ 
+        req.checkBody("email", "entered was incorrect").isEmail();
+        req.checkBody("password", "you entered was incorrect").isLength({min: 6});
       }
+ 
+      const errors = req.validationErrors();
+ 
+      if (errors) {
+        req.flash("error", errors);
+        return res.redirect(req.headers.referer);
+      } else {
+        return next();
+      }
+  }
 
 }
