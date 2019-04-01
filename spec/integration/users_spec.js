@@ -40,8 +40,7 @@ describe("routes : users", () => {
             form: {
                 name: "John Smith",
                 email: "user@example.com",
-                password: "123456789",
-                isVerified: false
+                password: "123456789"
             }
           }
     
@@ -72,8 +71,7 @@ describe("routes : users", () => {
               form: {
                 name: "John Smith",
                 email: "no",
-                password: "123456789",
-                isVerified: false
+                password: "123456789"
               }
             },
             (err, res, body) => {

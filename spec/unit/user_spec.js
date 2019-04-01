@@ -23,7 +23,8 @@ describe("User", () => {
         name: "John Smith",
         email: "user@example.com",
         password: "1234567890",
-        isVerified: false
+        isVerified: false,
+        verificationCode: 123456
       })
       .then((user) => {
         expect(user.name).toBe("John Smith");
@@ -43,7 +44,8 @@ describe("User", () => {
         name: "John Smith",
         email: "It's-a me, Mario!",
         password: "1234567890",
-        isVerified: false
+        isVerified: false,
+        verificationCode: 123456
       })
       .then((user) => {
 
@@ -65,7 +67,8 @@ describe("User", () => {
         name: "John Smith",
         email: "user@example.com",
         password: "1234567890",
-        isVerified: false
+        isVerified: false,
+        verificationCode: 123456
       })
       .then((user) => {
 
@@ -73,7 +76,8 @@ describe("User", () => {
           name: "Copy Cat",
           email: "user@example.com",
           password: "nananananananananananananananana BATMAN!",
-          isVerified: false
+          isVerified: false,
+          verificationCode: 123456
         })
         .then((user) => {
 

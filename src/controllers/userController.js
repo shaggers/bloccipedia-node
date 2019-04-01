@@ -32,7 +32,6 @@ module.exports = {
                 subject: 'Bloccipedia account verification',
                 text: 'Your verification code is: ' + user.verificationCode
                 };
-                console.log(msg);
                 sgMail.send(msg);
 
                 req.flash("notice", "Please verify your account");
@@ -45,15 +44,23 @@ module.exports = {
         res.render("users/sign_in");
     },
     signIn(req, res, next){
-        passport.authenticate("local")(req, res, function () {
-            if(!req.user){
-                req.flash("notice", "Sign in failed. Please try again.")
-                res.redirect("/users/sign_in");
-            } else {
-                req.flash("notice", "You've successfully signed in!");
-                res.redirect("/");
+
+        passport.authenticate('local', function(err, user, info) {
+            console.log(user);
+            if(err){
+              req.flash("notice", "Sign in failed. Please try again.")
+              return next(err);
             }
-        })
+            if(!user){
+                req.flash("notice", "The email or password you entered was incorrect");
+                return res.redirect('/users/sign_in')
+            } 
+            req.login(user, function(err) {
+                req.flash("notice", "You've successfully signed in!");
+                if(err){return next(err);}
+                return res.redirect("/")
+            })
+        })(req, res, next);
     },
     signOut(req, res, next){
         req.logout();
