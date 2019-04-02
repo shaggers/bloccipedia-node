@@ -15,7 +15,8 @@ describe("Wiki", () => {
                 email: "hello@gmail.com",
                 password: "hellosir",
                 isVerified: false,
-                verificationCode: 123456
+                verificationCode: 123456,
+                role: 0
             }).then((user) => {
                 this.user = user;
 

@@ -19,7 +19,8 @@ describe("routes : wikis", () => {
         email: "hello@gmail.com",
         password: "hellosir",
         isVerified: true,
-        verificationCode: "123456"
+        verificationCode: "123456",
+        role: 0
       }).then((user) => {
         this.user = user;
 
@@ -53,7 +54,8 @@ describe("routes : wikis", () => {
         url: "http://localhost:3000/auth/fake",
         form: {
           isVerified: true,
-          userId: this.user.id
+          userId: this.user.id,
+          role: 0
         }
       },
       (err, res, body) => {
