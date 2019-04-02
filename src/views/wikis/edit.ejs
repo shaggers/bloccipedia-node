@@ -6,37 +6,39 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
+    <main id="wikiEditBody" class="container">
 
         <% include ../static/partials/messages.ejs %>
+        <div id="editWikiContainer" class="border rounded-bottom">
+        <h1>Edit Wiki</h1>
 
-      <h1>Edit Wiki</h1>
+        <form action="/wikis/<%= wiki.id %>/update" method="post">
+            <div class="form-group">
+            <label for="title">Wiki title</label>
+            <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Wiki">
+            </div>
+            <div class="form-group">
+            <label for="body">Body</label>
+            <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="private">Privacy</label>
+                <select name="private" id="private">
+                    <option value="<%= wiki.private %>">
+                        <% if(wiki.private === true){ %>
+                            Private
+                        <% } else { %>
+                            Public
+                        <% } %>
+                    </option>
+                    <option value="false">Public</option>
+                    <option value="true">Private</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+        </div>
 
-      <form action="/wikis/<%= wiki.id %>/update" method="post">
-        <div class="form-group">
-          <label for="title">Wiki title</label>
-          <input value="<%= wiki.title %>" type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Wiki">
-        </div>
-        <div class="form-group">
-          <label for="body">Body</label>
-          <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"><%= wiki.body %></textarea>
-        </div>
-        <div class="form-group">
-            <label for="private">Privacy</label>
-            <select name="private" id="private">
-                <option value="<%= wiki.private %>">
-                    <% if(wiki.private === true){ %>
-                        Private
-                    <% } else { %>
-                        Public
-                    <% } %>
-                </option>
-                <option value="false">Public</option>
-                <option value="true">Private</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-success">Update</button>
-      </form>
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

@@ -66,3 +66,31 @@ nav {
 #signInBody {
     margin-top: 60px;
 }
+
+#wikiIndexBody {
+    margin-top: 60px;
+}
+
+#wikiIndexTitle {
+    text-align: center;
+}
+
+#wikiShowBody {
+    margin-top: 60px;
+}
+
+#wikiEditBody {
+    margin-top: 60px;
+}
+
+#wikiNewBody {
+    margin-top: 60px;
+}
+
+#newWikiContainer {
+    padding: 20px;
+}
+
+#editWikiContainer {
+    padding: 20px;
+}

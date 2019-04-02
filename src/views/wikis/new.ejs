@@ -6,30 +6,32 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
+    <main id="wikiNewBody" class="container">
 
         <% include ../static/partials/messages.ejs %>
 
-      <h1>New Wiki</h1>
+        <div id="newWikiContainer" class="border rounded-bottom">
+        <h1>New Wiki</h1>
 
-      <form action="/wikis/create" method="post">
-        <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+        <form action="/wikis/create" method="post">
+            <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+            <label for="body">Body</label>
+            <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="private">Privacy</label>
+                <select name="private" id="private">
+                    <option value="false" selected>Public</option>
+                    <option value="true">Private</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
         </div>
-        <div class="form-group">
-          <label for="body">Body</label>
-          <textarea rows="4" class="form-control" name="body" placeholder="Enter Body"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="private">Privacy</label>
-            <select name="private" id="private">
-                <option value="false" selected>Public</option>
-                <option value="true">Private</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
 
     </main>
 

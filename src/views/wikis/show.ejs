@@ -6,16 +6,17 @@
   <body>
     <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
+    <main id="wikiShowBody" class="container">
 
         <% include ../static/partials/messages.ejs %>
       <h1><%= wiki.title %></h1>
-
-      <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-      <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
-
+      <% if(currentUser) { %>
+        <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="/wikis/<%= wiki.id %>/edit" class="btn btn-warning">Edit</a>
+      <% } %>
+      <hr>
       <p><%= wiki.body %></p>
     </main>
 

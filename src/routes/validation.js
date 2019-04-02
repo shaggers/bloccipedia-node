@@ -38,7 +38,6 @@ module.exports = {
 
       if(req.method === "POST") {
 
-        //req.checkParams("userId", "must be valid").notEmpty().isInt();
         req.checkBody("title", "must be at least 5 characters in length").isLength({min: 5});
         req.checkBody("body", "must be at least 10 characters in length").isLength({min: 10});
       }
