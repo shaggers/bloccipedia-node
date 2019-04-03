@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../static/partials/head.ejs %>
+  </head>
+  <body>
+    <main id="wikiIndexBody" class="container">
+
+        <% include ../static/partials/messages.ejs %>
+        <% include ../static/partials/navbar.ejs %>
+
+        <h2>Upgrade to Premium</h2>
+
+        <p>
+            Upgrading to premium will allow you to create your own private wiki's and 
+            allow you to invite users of your choice to view and collaborate on the wiki.
+        </p>
+        
+        <form action="/upgrade" method="POST">
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_UlvpfN7UzEBINHtfcTt59kIp00MiemDoos"
+                data-amount="15.00"
+                data-name="Upgrade to Premium"
+                data-description="Example charge"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto">
+            </script>
+        </form>
+
+    </main>
+
+        <% include ../static/partials/baseScripts.ejs %>
+  </body>
+</html>

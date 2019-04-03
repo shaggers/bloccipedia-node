@@ -45,5 +45,9 @@ module.exports = (sequelize, DataTypes) => {
     return this.role === 1;
   };
 
+  User.prototype.isStandard = function() {
+    return this.role === 0;
+  };
+
   return User;
 };
