@@ -12,7 +12,13 @@ router.post("/upgrade",
     helper.ensureAuthenticated,
     helper.ensureVerified,
     paymentController.upgrade);
-router.get("/downgrade", paymentController.getDowngrade);
-router.post("/downgrade", paymentController.downgrade);
+router.get("/downgrade", 
+    helper.ensureAuthenticated,
+    helper.ensureVerified,
+    paymentController.getDowngrade);
+router.post("/downgrade", 
+    helper.ensureAuthenticated,
+    helper.ensureVerified,
+    paymentController.downgrade);
 
 module.exports = router;

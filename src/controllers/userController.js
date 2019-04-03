@@ -21,9 +21,7 @@ module.exports = {
                 req.flash("error", err);
                 res.redirect("/users/sign_up");
             } else {
-                console.log("above passport function");
                 passport.authenticate("local")(req, res, () => {
-                console.log("inside passport function");
                 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                 const msg = {
                 //to: newUser.email,

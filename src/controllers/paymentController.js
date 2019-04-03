@@ -30,6 +30,8 @@ module.exports = {
                 });
             })();
             paymentQueries.upgrade(req.user.id);
+            req.flash("notice", "Your account has been upgraded to premium.")
+            res.redirect("/");
         } else {
             req.flash("notice", "You already have a premium account")
             res.redirect("/");
@@ -46,6 +48,8 @@ module.exports = {
     downgrade(req, res, next){
         if(req.user.role === 1){
             paymentQueries.downgrade(req.user.id);
+            req.flash("notice", "Your account was downgraded to the Standard account.")
+            res.redirect("/");
         } else {
             req.flash("notice", "You must upgrade your account first." )
             res.redirect("/");
