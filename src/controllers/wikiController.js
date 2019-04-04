@@ -1,4 +1,5 @@
 const wikiQueries = require("../db/queries.wikis.js");
+const markdown = require("markdown").markdown;
 
 module.exports = {
     index(req, res, next){   
@@ -16,7 +17,7 @@ module.exports = {
     create(req, res, next){
         let newWiki = {
           title: req.body.title,
-          body: req.body.body,
+          body: markdown.toHTML(req.body.body),
           private: req.body.private,
           userId: req.user.id
         };
