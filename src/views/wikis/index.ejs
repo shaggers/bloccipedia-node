@@ -4,11 +4,12 @@
     <% include ../static/partials/head.ejs %>
   </head>
   <body>
-    <main id="wikiIndexBody" class="container">
+    <main class="container">
 
         <% include ../static/partials/messages.ejs %>
       <% include ../static/partials/navbar.ejs %>
-
+      
+      <div id="wikiIndexBody">
       <h1 id="wikiIndexTitle">Wiki's</h1>
 
       <% if(currentUser) { %>
@@ -30,7 +31,8 @@
           <% } %>  
 
         <% }) %>
-        </div>
+      </div>
+    </div>
 
     </main>
   </body>
