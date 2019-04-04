@@ -26,7 +26,9 @@
                 <label for="private">Privacy</label>
                 <select name="private" id="private">
                     <option value="false" selected>Public</option>
+                    <% if(currentUser.dataValues.role === 1 || currentUser.dataValues.role === 2){ %>
                     <option value="true">Private</option>
+                    <% } %>
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>

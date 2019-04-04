@@ -8,8 +8,10 @@
 
     <main id="wikiShowBody" class="container">
 
-        <% include ../static/partials/messages.ejs %>
+      <% include ../static/partials/messages.ejs %>
+
       <h1><%= wiki.title %></h1>
+
       <% if(currentUser) { %>
         <form style="display:initial" action="/wikis/<%= wiki.id %>/destroy" method="post">
             <button type="submit" class="btn btn-danger">Delete</button>
@@ -18,6 +20,7 @@
       <% } %>
       <hr>
       <p><%= wiki.body %></p>
+
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>

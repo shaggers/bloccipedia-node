@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label for="private">Privacy</label>
                 <select name="private" id="private">
-                    <option value="<%= wiki.private %>">
+                    <option value="<%= wiki.private %>" selected>
                         <% if(wiki.private === true){ %>
                             Private
                         <% } else { %>
@@ -32,7 +32,9 @@
                         <% } %>
                     </option>
                     <option value="false">Public</option>
+                    <% if((wiki.userId === currentUser.dataValues.id && currentUser.dataValues.role === 1) || currentUser.dataValues.role === 2){ %>
                     <option value="true">Private</option>
+                    <% } %>
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Update</button>

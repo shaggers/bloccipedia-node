@@ -34,7 +34,20 @@ module.exports = {
             if(err || wiki == null){
                 res.redirect(404, "/");
             } else {
-                res.render("wikis/show", {wiki});
+
+                if(wiki.private === true) {
+
+                  if(wiki.userId === req.user.id || req.user.role === 2){
+                    res.render("wikis/show", {wiki});
+                  } else {
+                    req.flash("notice", "You are not authorized to do that.")
+                    res.redirect("/wikis");
+                  }
+
+                } else {
+                  res.render("wikis/show", {wiki});
+                }
+
             }
         });
     },
@@ -52,7 +65,19 @@ module.exports = {
           if(err || wiki == null){
             res.redirect(404, "/");
           } else {
-            res.render("wikis/edit", {wiki});
+
+            if(wiki.private === true){
+
+              if(req.user.id === wiki.userId || req.user.role === 2){
+                res.render("wikis/edit", {wiki});
+              } else {
+                req.flash("notice", "You are not authorized to do that")
+                res.redirect("/wikis");
+              }
+
+            } else {
+              res.render("wikis/edit", {wiki});
+            }
           }
         });
     },
