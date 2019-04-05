@@ -24,8 +24,8 @@ module.exports = {
                 passport.authenticate("local")(req, res, () => {
                 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
                 const msg = {
-                to: newUser.email,
-                //to: "camtl66@gmail.com",
+                //to: newUser.email,
+                to: "camtl66@gmail.com",
                 from: "camtl66@gmail.com",
                 subject: 'Bloccipedia account verification',
                 text: 'Your verification code is: ' + user.verificationCode

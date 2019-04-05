@@ -17,7 +17,7 @@ module.exports = {
     create(req, res, next){
         let newWiki = {
           title: req.body.title,
-          body: markdown.toHTML(req.body.body),
+          body: req.body.body,
           private: req.body.private,
           userId: req.user.id
         };
@@ -46,7 +46,8 @@ module.exports = {
                   }
 
                 } else {
-                  res.render("wikis/show", {wiki});
+                  res.render("wikis/show", {wiki, markdown});
+                  
                 }
 
             }
