@@ -1,4 +1,5 @@
 const wikiQueries = require("../db/queries.wikis.js");
+const Collaborator = require("../db/models").Collaborators;
 const markdown = require("markdown").markdown;
 
 module.exports = {
@@ -7,7 +8,19 @@ module.exports = {
             if(err){
                 res.redirect(500, "static/index");
             } else {
+
+              if(req.user){
+                Collaborator.findAll({
+                  where: {
+                    userId: req.user.id
+                  }
+                }).then((collaborations) => {
+                  res.render("wikis/index", {wikis, collaborations});
+                })
+                
+              } else {
                 res.render("wikis/index", {wikis});
+              }              
             }
         });
     },
@@ -33,21 +46,36 @@ module.exports = {
 
         wikiQueries.getWiki(req.params.id, (err, wiki) => {
             if(err || wiki == null){
+                console.log(err);
                 res.redirect(404, "/");
             } else {
 
                 if(wiki.private === true) {
 
-                  if(wiki.userId === req.user.id || req.user.role === 2){
-                    res.render("wikis/show", {wiki});
-                  } else {
-                    req.flash("notice", "You are not authorized to do that.")
-                    res.redirect("/wikis");
+                  if(req.user){
+
+                    Collaborator.findAll({
+                      where: {
+                        userId: req.user.id,
+                        wikiId: wiki.id
+                      }
+                    }).then((collaboration) => {
+
+                        if (collaboration.length === 1) {
+                          res.render("wikis/show", {wiki, markdown});
+                        } else if (wiki.userId === req.user.id || req.user.role === 2) {
+                          res.render("wikis/show", {wiki, markdown});
+                        } else {
+                          req.flash("notice", "You are not authorized to do that.")
+                          res.redirect("/wikis");
+                        }                        
+                                            
+                    })
+
                   }
 
                 } else {
-                  res.render("wikis/show", {wiki, markdown});
-                  
+                  res.render("wikis/show", {wiki, markdown});                  
                 }
 
             }
@@ -68,18 +96,34 @@ module.exports = {
             res.redirect(404, "/");
           } else {
 
-            if(wiki.private === true){
+            if(wiki.private === true) {
 
-              if(req.user.id === wiki.userId || req.user.role === 2){
-                res.render("wikis/edit", {wiki});
-              } else {
-                req.flash("notice", "You are not authorized to do that")
-                res.redirect("/wikis");
+              if(req.user){
+
+                Collaborator.findAll({
+                  where: {
+                    userId: req.user.id,
+                    wikiId: wiki.id
+                  }
+                }).then((collaboration) => {
+
+                    if (collaboration.length === 1) {
+                      res.render("wikis/edit", {wiki, markdown, collaboration});
+                    } else if (wiki.userId === req.user.id || req.user.role === 2) {
+                      res.render("wikis/edit", {wiki, markdown, collaboration});
+                    } else {
+                      req.flash("notice", "You are not authorized to do that.")
+                      res.redirect("/wikis");
+                    }                           
+                })
+
               }
 
             } else {
-              res.render("wikis/edit", {wiki});
+              let collaboration = false
+              res.render("wikis/edit", {wiki, markdown, collaboration});                  
             }
+
           }
         });
     },

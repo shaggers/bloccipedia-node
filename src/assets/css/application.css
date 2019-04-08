@@ -1,5 +1,6 @@
 body {
     padding-top: 58px;
+    padding-bottom: 50px;
 }
 
 #indexBody {
@@ -79,10 +80,6 @@ nav {
     margin-top: 60px;
 }
 
-#wikiEditBody {
-    margin-top: 60px;
-}
-
 #wikiNewBody {
     margin-top: 60px;
 }
@@ -93,4 +90,5 @@ nav {
 
 #editWikiContainer {
     padding: 20px;
+    margin-top: 60px;
 }

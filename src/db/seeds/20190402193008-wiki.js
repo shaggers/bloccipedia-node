@@ -7,7 +7,7 @@ const faker = require("faker");
  for(let i = 1 ; i <= 15 ; i++){
    wikis.push({
      title: faker.hacker.noun(),
-     body: faker.lorem.sentence(),
+     body: faker.lorem.paragraphs(),
      private: false,
      createdAt: new Date(),
      updatedAt: new Date(),

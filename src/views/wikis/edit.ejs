@@ -37,8 +37,25 @@
                     <% } %>
                 </select>
             </div>
+            <% if((wiki.userId === currentUser.dataValues.id && currentUser.dataValues.role === 1) || currentUser.dataValues.role === 2){ %>
+        
+            <% } %>
+
             <button type="submit" class="btn btn-success">Update</button>
         </form>
+        <hr>
+        <% if(wiki.private == true) %>
+            <% if(collaboration.length == 0){ %>
+                <% include ../collaborators/new.ejs %>
+                <section id="collaborator-list">
+                        <% if(wiki.collaborators) { %>
+                            <% wiki.collaborators.forEach((collaborator) => { %>
+                                <%- include("../collaborators/show.ejs", {collaborator}) %>
+                            <% }) %>
+                        <% } %>
+                </section>
+            <% } %>
+        <%  %>
         </div>
 
     </main>

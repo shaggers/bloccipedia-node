@@ -23,7 +23,13 @@
             <% if(currentUser) { %>
               <% if(currentUser.dataValues.id === wiki.userId || currentUser.dataValues.role === 2) { %>
                 <a class="list-group-item list-group-item-action" href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
-              <% } %>  
+              <% } %>
+              
+              <% collaborations.forEach((collab) => { %>
+                <% if(collab.dataValues.wikiId === wiki.id){ %>
+                  <a class="list-group-item list-group-item-action" href="/wikis/<%= wiki.id %>"> <%= wiki.title %> </a>
+                <% } %>
+              <% }) %>
             <% } %>
 
           <% } else { %>
