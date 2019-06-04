@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-10">
-                        <p>Please enter the 6 digit code sent to <%= currentUser.email %></p>
+                        <p>Your verification code is <%= currentUser.verificationCode %></p>
                         <form method="POST" action="/users/verification">
                             <div class="form-group">
                                 <label for="verificationCode">Code: </label>
